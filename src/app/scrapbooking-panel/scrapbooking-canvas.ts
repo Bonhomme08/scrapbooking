@@ -45,7 +45,8 @@ export class ScrapbookingCanvas {
         this._canvasContext.stroke();
     }
 
-    private drawRectangle() {
-
+    protected drawRectangle(x: number, y: number, width: number, height: number) {
+        console.log(`drawRectangle =  ${x}, ${y}, ${width}, ${height}`);
+        this._canvasContext.rect(x, y, width, height);
     }
 }
