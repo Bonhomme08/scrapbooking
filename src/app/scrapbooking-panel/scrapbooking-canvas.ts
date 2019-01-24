@@ -1,23 +1,11 @@
-export class Rectangle {
-    x:number = 0;
-    y:number = 0;
-    width:number = 0;
-    height:number = 0;
-
-    constructor(x, y, width, height) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-    }
-}
+import {Point, Rectangle} from './geometry';
 
 export class ScrapbookingCanvas {
-    DOTS_QUANTITY = {x:16, y:8};
-    PAGE_OFFSET_PERCENTAGE = {x: 0.05, y: 0.05};
+    DOTS_QUANTITY: Point = new Point(16, 8);
+    PAGE_OFFSET_PERCENTAGE: Point = new Point(0.05, 0.05);
 
-    _calculated_page_offset = {x: 0, y: 0};
-    _calculated_dots_range = {x: 0, y: 0};
+    _calculated_page_offset: Point = new Point();
+    _calculated_dots_range: Point = new Point();
 
     _canvas: HTMLCanvasElement;
     _canvasContext: CanvasRenderingContext2D;
@@ -77,5 +65,9 @@ export class ScrapbookingCanvas {
         for (let r of this._rectangleList) {
             this.drawRectangle(r.x, r.y, r.width, r.height);
         }
+    }
+
+    protected convertPixelToDots() {
+
     }
 }

@@ -1,8 +1,9 @@
-import { ScrapbookingCanvas, Rectangle } from './scrapbooking-canvas';
+import { Rectangle, Point } from './geometry';
+import { ScrapbookingCanvas } from './scrapbooking-canvas';
 
 export class ScrapbookingDrawableCanvas extends ScrapbookingCanvas{
     _mouseDown: boolean = false;
-    _click_location = {x:0, y:0};
+    _click_location: Point = new Point();
 
     constructor(canvas: HTMLCanvasElement) {
         super(canvas);
