@@ -1,3 +1,17 @@
+export class Rectangle {
+    x:number = 0;
+    y:number = 0;
+    width:number = 0;
+    height:number = 0;
+
+    constructor(x, y, width, height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
+}
+
 export class ScrapbookingCanvas {
     DOTS_QUANTITY = {x:16, y:8};
     PAGE_OFFSET_PERCENTAGE = {x: 0.05, y: 0.05};
@@ -8,6 +22,7 @@ export class ScrapbookingCanvas {
     _canvas: HTMLCanvasElement;
     _canvasContext: CanvasRenderingContext2D;
 
+    _rectangleList: Array<Rectangle> = new Array();
 
     constructor(canvas: HTMLCanvasElement) {
         this._canvas = canvas;
@@ -46,7 +61,21 @@ export class ScrapbookingCanvas {
     }
 
     protected drawRectangle(x: number, y: number, width: number, height: number) {
-        console.log(`drawRectangle =  ${x}, ${y}, ${width}, ${height}`);
+        //console.log(`drawRectangle =  ${x}, ${y}, ${width}, ${height}`);
         this._canvasContext.rect(x, y, width, height);
+        this._canvasContext.stroke();
+    }
+
+    protected drawRectangleTemp(x: number, y: number, width: number, height: number) {
+        this._canvasContext.clearRect(0, 0, 5000, 5000);
+        this.drawDots();
+        this.drawSavedRectangles();
+        this.drawRectangle(x, y, width, height);
+    }
+
+    protected drawSavedRectangles() {
+        for (let r of this._rectangleList) {
+            this.drawRectangle(r.x, r.y, r.width, r.height);
+        }
     }
 }
